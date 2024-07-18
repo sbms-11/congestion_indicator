@@ -1,29 +1,67 @@
-# Build stage
-FROM golang:1.22.4 as builder
+# ベースイメージとしてUbuntu 20.04を使用
+FROM ubuntu:20.04
+
+# メタデータの設定
+LABEL maintainer="fufufu991122@gmail.com"
+
+# 環境変数の設定（非対話モードでのapt-get実行）
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 必要なパッケージのインストール
+RUN apt-get update && \
+    apt-get install -y \
+    wget \
+    gnupg \
+    software-properties-common \
+    build-essential \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Go言語のインストール
+RUN wget https://golang.org/dl/go1.22.5.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go1.22.5.linux-amd64.tar.gz && \
+    rm go1.22.5.linux-amd64.tar.gz
+
+# Goのパスを設定
+ENV PATH="/usr/local/go/bin:${PATH}"
+
+# 作業ディレクトリを設定
 WORKDIR /app
 COPY . .
+
+# Goモジュールを初期化
 RUN go mod init backend
+
+# GinとGORMのインストール
 RUN go get -u github.com/gin-gonic/gin
-RUN go get -u github.com/lib/pq
+RUN go get -u gorm.io/gorm
+RUN go get -u gorm.io/driver/postgres
+RUN go mod tidy
 RUN go build -o main .
 
-# Run stage
-FROM ubuntu:20.04
-# タイムゾーンを設定しないとdocker-compose時に停止してしまう
-ENV TZ=Asia/Tokyo
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN mkdir -p /var/lib/postgresql/data
-RUN chown -R postgres:postgres /var/lib/postgresql
-WORKDIR /var/lib/postgresql
-COPY --from=builder /app/main .
-RUN apt-get update && apt-get install -y postgresql postgresql-contrib
-USER postgres
+# PostgreSQLのインストール
+RUN apt-get update && \
+    apt-get install -y \
+    postgresql \
+    postgresql-contrib \
+    && rm -rf /var/lib/apt/lists/*
 
-# Setup the database
-RUN /etc/init.d/postgresql start && \
-    psql --command "CREATE USER dbuser WITH SUPERUSER PASSWORD 'P#ssw0rd';" && \
-    createdb -O dbuser db
 
-USER root
-EXPOSE 8000
+
+# PostgreSQLのデータディレクトリをボリュームに設定
+VOLUME /var/lib/postgresql/data
+
+# ポートのエクスポート（PostgreSQLのデフォルトポート5432）
+EXPOSE 5432
+
+# PostgreSQLの初期化用スクリプトのコピー
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# アプリケーションのソースコードをコピー
+COPY . /app
+
+# 作業ディレクトリを設定
+WORKDIR /app
+
+# コンテナ起動時にPostgreSQLを自動起動し、アプリケーションを実行
 CMD service postgresql start && ./main

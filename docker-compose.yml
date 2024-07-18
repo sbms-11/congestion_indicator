@@ -7,13 +7,14 @@ services:
       - type: bind
         source: ./backend
         target: /app/backend
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "8000:8000"
     environment:
       - DB_HOST=localhost
       - DB_PORT=5432
-      - DB_USER=user
-      - DB_PASSWORD=user
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
       - DB_NAME=DB
       
   frontend:
@@ -28,3 +29,5 @@ services:
       - "3000:80"
     environment:
       - API_URL=http://localhost:8000
+volumes:
+  postgres_data:
