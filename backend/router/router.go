@@ -8,15 +8,15 @@ import (
 
 func ApiRouter(r *gin.Engine) {
 	//user用画面 エンドポイント
-	r.GET("/", controller.Get_getShopStatusList)
-	r.GET("/home", controller.Get_getShopInfo)
-	r.GET("/myPage", controller.Post_makeRes)
-	r.GET("/shopStatus", controller.Post_makeRes)
-	r.POST("/MakeNewRes", controller.Post_deleteRes)
+	r.GET("/user_home", controller.Get_getShopStatusList)
+	r.GET("/user_ShopDetails", controller.Get_getShopDetails)
+	r.POST("/user_makeRes", controller.Post_makeRes)
+	r.POST("/user_deleteRes", controller.Post_deleteRes)
+	r.POST("/user_mypage", controller.Post_makeRes)
 
 	//shop用画面 エンドポイント
 	r.GET("/shop_home", controller.Get_getResStatus)
-	r.GET("/shop_makeNewRes", controller.Post_makeResForShop)
-	r.GET("/shop", controller.Post_deleteResForShop)
-	r.GET("/shop", controller.Post_makeEnterdStatus)
+	r.POST("/shop_makeNewRes", controller.Post_makeResForShop)
+	r.POST("/shop_deleteRes", controller.Post_deleteResForShop)
+	r.POST("/shop_makeEntrydStatus", controller.Post_makeEntrydStatus)
 }
