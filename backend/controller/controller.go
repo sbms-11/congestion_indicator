@@ -1,29 +1,39 @@
 package controller
 
 import (
-	"log"
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
-func SdampleFanc(c *gin.Context) {
-	log.Println("Hello, im Gopher")
-	c.JSON(http.StatusOK, gin.H{"message": "Hi!"})
-}
-
-func GetHomeInfo(c *gin.Context) {
+// user用
+func Get_getReservationStatus(c *gin.Context) {
 
 }
 
-func GetUserInfo(c *gin.Context) {
+func Post_makeReservationForShop(c *gin.Context) {
 
 }
 
-func GetShopStatus(c *gin.Context) {
+func Post_deleteReservationForShop(c *gin.Context) {
 
 }
 
-func MakeNewReservation(c *gin.Context) {
+func Post_makeEnterdStatus(c *gin.Context) {
+
+}
+
+// shop用
+func Get_getShopStatusList(c *gin.Context) {
+
+}
+
+func Get_getShopInfo(c *gin.Context) {
+
+}
+
+func Post_makeReservation(c *gin.Context) {
+
+}
+
+func Post_deleteReservation(c *gin.Context) {
 
 }

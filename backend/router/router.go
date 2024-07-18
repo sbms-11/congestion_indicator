@@ -7,9 +7,16 @@ import (
 )
 
 func ApiRouter(r *gin.Engine) {
-	r.GET("/", controller.SdampleFanc)
-	r.GET("/home", controller.GetHomeInfo)
-	r.GET("/myPage", controller.GetUserInfo)
-	r.GET("/shopStatus", controller.GetShopStatus)
-	r.POST("/MakeNewReservation", controller.MakeNewReservation)
+	//user用画面 エンドポイント
+	r.GET("/", controller.Get_getShopStatusList)
+	r.GET("/home", controller.Get_getShopInfo)
+	r.GET("/myPage", controller.Post_makeReservation)
+	r.GET("/shopStatus", controller.Post_makeReservation)
+	r.POST("/MakeNewReservation", controller.Post_deleteReservation)
+
+	//shop用画面 エンドポイント
+	r.GET("/shop", controller.Get_getReservationStatus)
+	r.GET("/shop", controller.Post_makeReservationForShop)
+	r.GET("/shop", controller.Post_deleteReservationForShop)
+	r.GET("/shop", controller.Post_makeEnterdStatus)
 }
