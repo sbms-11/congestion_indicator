@@ -10,13 +10,13 @@ func ApiRouter(r *gin.Engine) {
 	//user用画面 エンドポイント
 	r.GET("/", controller.Get_getShopStatusList)
 	r.GET("/home", controller.Get_getShopInfo)
-	r.GET("/myPage", controller.Post_makeReservation)
-	r.GET("/shopStatus", controller.Post_makeReservation)
-	r.POST("/MakeNewReservation", controller.Post_deleteReservation)
+	r.GET("/myPage", controller.Post_makeRes)
+	r.GET("/shopStatus", controller.Post_makeRes)
+	r.POST("/MakeNewRes", controller.Post_deleteRes)
 
 	//shop用画面 エンドポイント
-	r.GET("/shop", controller.Get_getReservationStatus)
-	r.GET("/shop", controller.Post_makeReservationForShop)
-	r.GET("/shop", controller.Post_deleteReservationForShop)
+	r.GET("/shop_home", controller.Get_getResStatus)
+	r.GET("/shop_makeNewRes", controller.Post_makeResForShop)
+	r.GET("/shop", controller.Post_deleteResForShop)
 	r.GET("/shop", controller.Post_makeEnterdStatus)
 }

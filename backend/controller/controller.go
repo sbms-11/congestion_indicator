@@ -5,15 +5,15 @@ import (
 )
 
 // user用
-func Get_getReservationStatus(c *gin.Context) {
+func Get_getResStatus(c *gin.Context) {
 
 }
 
-func Post_makeReservationForShop(c *gin.Context) {
+func Post_makeResForShop(c *gin.Context) {
 
 }
 
-func Post_deleteReservationForShop(c *gin.Context) {
+func Post_deleteResForShop(c *gin.Context) {
 
 }
 
@@ -30,10 +30,10 @@ func Get_getShopInfo(c *gin.Context) {
 
 }
 
-func Post_makeReservation(c *gin.Context) {
+func Post_makeRes(c *gin.Context) {
 
 }
 
-func Post_deleteReservation(c *gin.Context) {
+func Post_deleteRes(c *gin.Context) {
 
 }
