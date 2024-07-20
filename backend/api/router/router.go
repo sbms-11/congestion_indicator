@@ -1,7 +1,7 @@
 package router
 
 import (
-	"backend/controller"
+	"github.com/sbms-11/congestion_indicator/controller"
 
 	"github.com/gin-gonic/gin"
 )
