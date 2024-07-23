@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/sbms-11/congestion_indicator/router"
+	"api/router"
 
 	"github.com/gin-gonic/gin"
 )
