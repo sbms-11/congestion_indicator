@@ -1,0 +1,31 @@
+/* src/components/TeamsMenu.css */
+.menu-container {
+    width: 16rem; /* 64 (w-64) */
+    background-color: #2d3748; /* bg-gray-800 */
+    color: white;
+  }
+  
+  .menu-item,
+  .sub-menu-item {
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+  }
+  
+  .menu-item:hover {
+    background-color: #4a5568; /* hover:bg-gray-700 */
+  }
+  
+  .sub-menu-item:hover {
+    background-color: #718096; /* hover:bg-gray-600 */
+  }
+  
+  .menu-item.active,
+  .sub-menu-item.active {
+    background-color: #4a5568; /* bg-gray-700 or bg-gray-600 */
+  }
+  
+  .sub-menu-container {
+    padding-left: 1rem; /* pl-4 */
+  }
+  
