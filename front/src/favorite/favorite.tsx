@@ -1,7 +1,7 @@
 import SideMenu from "../components/sideMenu/sideMenu"
 import Table from "./table"
 
-const Home = () => {
+const Favorite = () => {
     return (
         <>
             <SideMenu />
@@ -12,4 +12,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Favorite;

@@ -1,7 +1,12 @@
+import SideMenu from "../components/sideMenu/sideMenu"
+
 const ShopDetail = () => {
     return (
         <>
-            <div>ShopDetail</div>
+            <SideMenu />
+            <div className="pl-[210px] h-full">
+                ShopDetail
+            </div>
         </>
     )
 }
